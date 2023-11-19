@@ -103,3 +103,31 @@ sys_trace(void)
   argint(0, &n);
   return trace(n);
 }
+
+uint64
+sys_pgaccess(void)
+{
+    void *base; void* mask; int len;
+    argint(1, &len);
+    argaddr(0, &base);
+    argaddr(2, &mask);
+
+    unsigned int tempMask = 0;
+
+    pagetable_t pg = myproc()->pagetable;
+
+    for (uint i = 0; i < len; i++)
+    {
+      pte_t pte = walk(pg, base + i * PGSIZE, 0);
+
+      if (pte & PTE_A)
+      {
+          tempMask = tempMask & (1 << i);
+          pte = pte & ~PTE_A;
+      }  
+    }
+    
+    copyout(pg, mask, &tempMask, sizeof(unsigned int));
+
+    return 0;
+}

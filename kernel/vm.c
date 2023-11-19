@@ -446,7 +446,6 @@ void vmprint(pagetable_t pagetable, uint depth)
     printf("page table %p\n", pagetable);
   }
   
-
   for (int i = 0; i < 512; i++)
   {
     pte_t pte = pagetable[i];

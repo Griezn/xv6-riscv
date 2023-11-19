@@ -24,6 +24,7 @@ int sleep(int);
 int uptime(void);
 int ps(void);
 int trace(int);
+int pgaccess(void*, int, void*);
 
 // ulib.c
 int stat(const char*, struct stat*);

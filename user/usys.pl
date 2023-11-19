@@ -38,3 +38,4 @@ entry("sleep");
 entry("uptime");
 entry("ps");
 entry("trace");
+entry("pgaccess");

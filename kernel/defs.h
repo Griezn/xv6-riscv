@@ -108,6 +108,7 @@ int             either_copyin(void *dst, int user_src, uint64 src, uint64 len);
 void            procdump(void);
 int             ps(void);
 int             trace(int masker);
+int             pgaccess(void *base, int len, void *mask);
 
 // swtch.S
 void            swtch(struct context*, struct context*);
